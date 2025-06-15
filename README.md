@@ -4,6 +4,12 @@ Simple React/Vite to-do list with full test coverage.
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](#)  
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](#)
 
+Live Demo
+[https://todo-k4ctvzkse-kerims-projects-05c1d0fb.vercel.app](https://todo-k4ctvzkse-kerims-projects-05c1d0fb.vercel.app)
+
+Repository
+[https://github.com/KerimCeljo/todo-app](https://github.com/KerimCeljo/todo-app)
+
 Table of Contents
 
 - [Features](#features)  
@@ -41,6 +47,9 @@ Installation
 bash
 git clone https://github.com/your-username/todo-app.git
 cd todo-app
+
+Course project for Software Verification, Validation, and Testing
+Kerim Celjo — June 2025
 npm install
 
 Running Locally
