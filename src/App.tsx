@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, type FormEvent } from 'react';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface Todo {
+  id: number;
+  text: string;
+  completed: boolean;
 }
 
-export default App
+function App() {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [newText, setNewText] = useState('');
+
+  function handleAdd(e: FormEvent) {
+    e.preventDefault();
+    const text = newText.trim();
+    if (!text) return;               // don’t add empty
+    setTodos(prev => [
+      ...prev,
+      { id: Date.now(), text, completed: false },
+    ]);
+    setNewText('');
+  }
+
+  function toggleTodo(id: number) {
+    setTodos(prev =>
+      prev.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  }
+
+  function deleteTodo(id: number) {
+    setTodos(prev => prev.filter(todo => todo.id !== id));
+  }
+
+  return (
+    <div className="App">
+      <h1>My To-Do List</h1>
+      <form onSubmit={handleAdd}>
+        <input
+          placeholder="Add new todo"
+          value={newText}
+          onChange={e => setNewText(e.target.value)}
+        />
+        <button type="submit">Add</button>
+      </form>
+
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id}>
+            <span
+              onClick={() => toggleTodo(todo.id)}
+              style={{
+                textDecoration: todo.completed ? 'line-through' : 'none',
+                cursor: 'pointer',
+              }}
+            >
+              {todo.text}
+            </span>
+            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
