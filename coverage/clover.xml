@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1750021417916" clover="3.2.0">
+  <project timestamp="1750021417917" name="All files">
+    <metrics statements="75" coveredstatements="66" conditionals="25" coveredconditionals="23" methods="9" coveredmethods="8" elements="109" coveredelements="97" complexity="0" loc="75" ncloc="75" packages="1" files="2" classes="2"/>
+    <file name="App.tsx" path="C:\Users\imtec\Desktop\svvt4\todo-app\src\App.tsx">
+      <metrics statements="66" coveredstatements="66" conditionals="24" coveredconditionals="23" methods="8" coveredmethods="8"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="10" count="46" type="cond" truecount="1" falsecount="0"/>
+      <line num="11" count="46" type="stmt"/>
+      <line num="12" count="46" type="stmt"/>
+      <line num="14" count="46" type="cond" truecount="1" falsecount="0"/>
+      <line num="16" count="46" type="cond" truecount="1" falsecount="0"/>
+      <line num="17" count="4" type="stmt"/>
+      <line num="18" count="4" type="cond" truecount="0" falsecount="1"/>
+      <line num="19" count="4" type="stmt"/>
+      <line num="20" count="4" type="cond" truecount="1" falsecount="0"/>
+      <line num="21" count="4" type="stmt"/>
+      <line num="22" count="4" type="stmt"/>
+      <line num="24" count="46" type="cond" truecount="1" falsecount="0"/>
+      <line num="25" count="2" type="cond" truecount="1" falsecount="0"/>
+      <line num="26" count="2" type="cond" truecount="3" falsecount="0"/>
+      <line num="27" count="2" type="stmt"/>
+      <line num="28" count="2" type="stmt"/>
+      <line num="30" count="46" type="cond" truecount="1" falsecount="0"/>
+      <line num="31" count="1" type="cond" truecount="2" falsecount="0"/>
+      <line num="32" count="1" type="stmt"/>
+      <line num="34" count="46" type="cond" truecount="1" falsecount="0"/>
+      <line num="35" count="1" type="cond" truecount="2" falsecount="0"/>
+      <line num="36" count="1" type="stmt"/>
+      <line num="38" count="46" type="stmt"/>
+      <line num="39" count="46" type="stmt"/>
+      <line num="40" count="46" type="stmt"/>
+      <line num="42" count="46" type="stmt"/>
+      <line num="43" count="46" type="stmt"/>
+      <line num="44" count="46" type="stmt"/>
+      <line num="45" count="46" type="stmt"/>
+      <line num="46" count="46" type="stmt"/>
+      <line num="47" count="46" type="cond" truecount="1" falsecount="0"/>
+      <line num="48" count="46" type="stmt"/>
+      <line num="49" count="46" type="stmt"/>
+      <line num="50" count="46" type="stmt"/>
+      <line num="52" count="46" type="stmt"/>
+      <line num="53" count="46" type="cond" truecount="2" falsecount="0"/>
+      <line num="54" count="46" type="stmt"/>
+      <line num="55" count="46" type="stmt"/>
+      <line num="56" count="46" type="stmt"/>
+      <line num="57" count="46" type="stmt"/>
+      <line num="58" count="46" type="stmt"/>
+      <line num="60" count="46" type="stmt"/>
+      <line num="61" count="46" type="stmt"/>
+      <line num="63" count="46" type="stmt"/>
+      <line num="64" count="46" type="cond" truecount="1" falsecount="0"/>
+      <line num="65" count="15" type="stmt"/>
+      <line num="66" count="15" type="stmt"/>
+      <line num="67" count="15" type="stmt"/>
+      <line num="68" count="15" type="stmt"/>
+      <line num="69" count="15" type="cond" truecount="1" falsecount="0"/>
+      <line num="70" count="15" type="stmt"/>
+      <line num="71" count="15" type="stmt"/>
+      <line num="72" count="15" type="cond" truecount="2" falsecount="0"/>
+      <line num="73" count="15" type="stmt"/>
+      <line num="74" count="15" type="stmt"/>
+      <line num="75" count="15" type="cond" truecount="1" falsecount="0"/>
+      <line num="76" count="15" type="stmt"/>
+      <line num="77" count="15" type="stmt"/>
+      <line num="79" count="15" type="stmt"/>
+      <line num="80" count="15" type="stmt"/>
+      <line num="81" count="46" type="stmt"/>
+      <line num="82" count="46" type="stmt"/>
+      <line num="83" count="46" type="stmt"/>
+      <line num="85" count="46" type="stmt"/>
+    </file>
+    <file name="main.tsx" path="C:\Users\imtec\Desktop\svvt4\todo-app\src\main.tsx">
+      <metrics statements="9" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
+      <line num="2" count="0" type="stmt"/>
+      <line num="3" count="0" type="stmt"/>
+      <line num="4" count="0" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="7" count="0" type="stmt"/>
+      <line num="8" count="0" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>

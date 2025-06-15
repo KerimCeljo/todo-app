@@ -1,89 +1,84 @@
-// src/App.tsx
 import React, { useState } from 'react'
 import './App.css'
 
-interface Todo {
+type Task = {
   id: number
   text: string
-  completed: boolean
+  done: boolean
 }
 
 export default function App() {
-  const [todos, setTodos] = useState<Todo[]>([])
-  const [inputValue, setInputValue] = useState('')
+  const [tasks, setTasks] = useState<Task[]>([])
+  const [newTask, setNewTask] = useState('')
 
-  const handleAddTodo = (e: React.FormEvent) => {
+  const remaining = tasks.filter((t) => !t.done).length
+
+  function handleAddTask(e: React.FormEvent) {
     e.preventDefault()
-    const text = inputValue.trim()
-    if (!text) return
-
-    setTodos((prev) => [
-      ...prev,
-      { id: Date.now(), text, completed: false },
-    ])
-    setInputValue('')
+    if (!newTask.trim()) return
+    const next: Task = { id: Date.now(), text: newTask.trim(), done: false }
+    setTasks((prev) => [...prev, next])
+    setNewTask('')
   }
 
-  const handleToggle = (id: number) => {
-    setTodos((prev) =>
-      prev.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
+  function toggleTask(id: number) {
+    setTasks((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, done: !t.done } : t))
     )
   }
 
-  const handleClearCompleted = () => {
-    setTodos((prev) => prev.filter((todo) => !todo.completed))
+  function clearCompleted() {
+    setTasks((prev) => prev.filter((t) => !t.done))
   }
 
-  const itemsLeft = todos.filter((todo) => !todo.completed).length
+  function deleteTask(id: number) {
+    setTasks((prev) => prev.filter((t) => t.id !== id))
+  }
 
   return (
     <div className="app-container">
-      {/* Updated to match your tests */}
       <h1>Todo List</h1>
 
-      <form className="todo-form" onSubmit={handleAddTodo}>
-        {/* Updated placeholder to match tests */}
+      <form className="todo-form" onSubmit={handleAddTask}>
         <input
-          type="text"
           placeholder="Add new task"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          type="text"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
         />
         <button type="submit">Add</button>
       </form>
 
       <div className="controls todo-stats">
-        <span className="items-left">
-          {itemsLeft} item{itemsLeft !== 1 ? 's' : ''} left
-        </span>
+        <span className="items-left">{remaining} item{remaining !== 1 ? 's' : ''} left</span>
         <button
           className="clear-btn"
-          onClick={handleClearCompleted}
-          disabled={!todos.some((t) => t.completed)}
+          onClick={clearCompleted}
+          disabled={remaining === tasks.length}
         >
           Clear Completed
         </button>
       </div>
 
       <ul className="todo-list">
-{todos.map((todo) => (
-  <li className="todo-item" key={todo.id}>
-    <input
-      type="checkbox"
-      aria-label={todo.text}       // ← here
-      checked={todo.completed}
-      onChange={() => handleToggle(todo.id)}
-    />
-    <span
-      className={`todo-text${todo.completed ? ' completed' : ''}`}
-    >
-      {todo.text}
-    </span>
-    …
-  </li>
-))}
+        {tasks.map((task) => (
+          <li key={task.id} className="todo-item">
+            <input
+              type="checkbox"
+              checked={task.done}
+              onChange={() => toggleTask(task.id)}
+              aria-label={task.text}
+            />
+            <span className={`todo-text${task.done ? ' completed' : ''}`}>{task.text}</span>
+            <button
+              className="delete-btn"
+              onClick={() => deleteTask(task.id)}
+              aria-label={`Delete ${task.text}`}
+            >
+              ×
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   )
