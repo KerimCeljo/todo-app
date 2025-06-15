@@ -1,4 +1,4 @@
-Todo App-Kerim Čeljo
+Todo App- Kerim Čeljo
 Simple React/Vite to-do list with full test coverage.
 
 [![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](#)  
@@ -42,3 +42,8 @@ bash
 git clone https://github.com/your-username/todo-app.git
 cd todo-app
 npm install
+
+Running Locally
+
+npm run dev
+Open "http://localhost:5173"
