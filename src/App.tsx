@@ -1,69 +1,95 @@
-import { useState, type FormEvent } from 'react';
-import './App.css';
+// src/App.tsx
+import { useState, useEffect, type ChangeEvent, type FormEvent } from 'react'
+import './App.css'
 
-interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
+type Todo = {
+  id: number
+  text: string
+  completed: boolean
 }
 
-function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [newText, setNewText] = useState('');
+export default function App() {
+  // load from localStorage (or start with empty)
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    const stored = localStorage.getItem('my-todos')
+    return stored ? JSON.parse(stored) : []
+  })
+  const [newText, setNewText] = useState('')
 
-  function handleAdd(e: FormEvent) {
-    e.preventDefault();
-    const text = newText.trim();
-    if (!text) return;               // don’t add empty
-    setTodos(prev => [
+  // sync to localStorage whenever todos change
+  useEffect(() => {
+    localStorage.setItem('my-todos', JSON.stringify(todos))
+  }, [todos])
+
+  // add a new todo
+  const handleAdd = (e: FormEvent) => {
+    e.preventDefault()
+    const text = newText.trim()
+    if (!text) return
+    setTodos((prev) => [
       ...prev,
       { id: Date.now(), text, completed: false },
-    ]);
-    setNewText('');
+    ])
+    setNewText('')
   }
 
-  function toggleTodo(id: number) {
-    setTodos(prev =>
-      prev.map(todo =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+  // toggle completed state
+  const toggleTodo = (id: number) => {
+    setTodos((prev) =>
+      prev.map((t) =>
+        t.id === id ? { ...t, completed: !t.completed } : t
       )
-    );
+    )
   }
 
-  function deleteTodo(id: number) {
-    setTodos(prev => prev.filter(todo => todo.id !== id));
+  // delete one
+  const deleteTodo = (id: number) => {
+    setTodos((prev) => prev.filter((t) => t.id !== id))
   }
+
+  // clear all done
+  const clearCompleted = () => {
+    setTodos((prev) => prev.filter((t) => !t.completed))
+  }
+
+  const itemsLeft = todos.filter((t) => !t.completed).length
 
   return (
-    <div className="App">
-      <h1>My To-Do List</h1>
-      <form onSubmit={handleAdd}>
+    <div className="app-container">
+      <h1>My Todo App</h1>
+
+      <form onSubmit={handleAdd} className="todo-form">
         <input
-          placeholder="Add new todo"
+          type="text"
+          placeholder="What do you need to do?"
           value={newText}
-          onChange={e => setNewText(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setNewText(e.target.value)
+          }
         />
         <button type="submit">Add</button>
       </form>
 
-      <ul>
-        {todos.map(todo => (
-          <li key={todo.id}>
-            <span
-              onClick={() => toggleTodo(todo.id)}
-              style={{
-                textDecoration: todo.completed ? 'line-through' : 'none',
-                cursor: 'pointer',
-              }}
-            >
-              {todo.text}
-            </span>
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
+      <div className="todo-stats">
+        <span>{itemsLeft} item{itemsLeft !== 1 ? 's' : ''} left</span>
+        <button onClick={clearCompleted}>Clear Completed</button>
+      </div>
+
+      <ul className="todo-list">
+        {todos.map((todo) => (
+          <li key={todo.id} className={todo.completed ? 'done' : ''}>
+            <label>
+              <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => toggleTodo(todo.id)}
+              />
+              <span>{todo.text}</span>
+            </label>
+            <button onClick={() => deleteTodo(todo.id)}>×</button>
           </li>
         ))}
       </ul>
     </div>
-  );
+  )
 }
-
-export default App;
